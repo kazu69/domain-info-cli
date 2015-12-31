@@ -1,5 +1,7 @@
 # domain-info-cli
 
+[![Build Status](https://travis-ci.org/kazu69/domain-info-cli.svg?branch=master)](https://travis-ci.org/kazu69/domain-info-cli)
+
 [domain-info](https://www.npmjs.com/package/domain-info) command-line tools.
 
 ## install
