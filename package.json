@@ -1,0 +1,47 @@
+{
+  "name": "domain-info-cli",
+  "version": "0.0.1",
+  "description": "simple domain information tool cli",
+  "keywords": [
+    "domain",
+    "dns",
+    "dig",
+    "whois",
+    "client",
+    "punycode",
+    "promise",
+    "cli"
+  ],
+  "bin": {
+    "domain": "cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/ava test.js",
+    "lint": "eslint cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazu69/domain-info-cli.git"
+  },
+  "author": "kazu69",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kazu69/domain-info-cli/issues"
+  },
+  "homepage": "https://github.com/kazu69/domain-info-cli#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "columnify": "^1.5.2",
+    "domain-info": "0.0.2",
+    "log-symbols": "^1.0.2"
+  },
+  "devDependencies": {
+    "ava": "^0.9.1",
+    "eslint": "^1.10.3",
+    "execa": "^0.1.1",
+    "meow": "^3.6.0"
+  }
+}
