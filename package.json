@@ -36,12 +36,12 @@
     "chalk": "^1.1.1",
     "columnify": "^1.5.2",
     "domain-info": "0.0.2",
-    "log-symbols": "^1.0.2"
+    "log-symbols": "^1.0.2",
+    "meow": "^3.6.0"
   },
   "devDependencies": {
     "ava": "^0.9.1",
     "eslint": "^1.10.3",
-    "execa": "^0.1.1",
-    "meow": "^3.6.0"
+    "execa": "^0.1.1"
   }
 }
