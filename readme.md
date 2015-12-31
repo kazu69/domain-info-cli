@@ -47,3 +47,7 @@ domain --help
 
 [domain-info](https://www.npmjs.com/package/domain-info)
 
+## License
+
+MIT © kazu69
+
