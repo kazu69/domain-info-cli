@@ -1,6 +1,6 @@
 {
   "name": "domain-info-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simple domain information tool cli",
   "keywords": [
     "domain",
@@ -35,7 +35,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "columnify": "^1.5.2",
-    "domain-info": "0.0.2",
+    "domain-info": "0.0.4",
     "log-symbols": "^1.0.2",
     "meow": "^3.6.0"
   },
