@@ -34,14 +34,14 @@
   "homepage": "https://github.com/kazu69/domain-info-cli#readme",
   "dependencies": {
     "chalk": "^1.1.1",
-    "columnify": "^1.5.2",
-    "domain-info": "0.0.4",
+    "columnify": "^1.5.4",
+    "domain-info": "0.0.5",
     "log-symbols": "^1.0.2",
-    "meow": "^3.6.0"
+    "meow": "^3.7.0"
   },
   "devDependencies": {
-    "ava": "^0.9.1",
-    "eslint": "^1.10.3",
-    "execa": "^0.1.1"
+    "ava": "^0.12.0",
+    "eslint": "^2.2.0",
+    "execa": "^0.2.2"
   }
 }
