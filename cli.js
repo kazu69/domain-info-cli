@@ -59,7 +59,13 @@ function stout(data) {
                 keys = Object.keys(record);
                 return false;
             });
-            console.log(columnify(data[type], {columns: keys}));
+            console.log(columnify(data[type], {
+              columns: keys,
+              columnSplitter: '|',
+              preserveNewLines: true,
+              minWidth: 8,
+              align: 'center'
+            }));
         }
         
     }
