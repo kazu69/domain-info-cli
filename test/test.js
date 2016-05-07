@@ -32,7 +32,8 @@ test('.whois()', async t => {
     const result = await execa.shell('node ../cli.js whois example.com');
     readLine.on('line', (line) => {
         t.true(result.stdout.includes(line));
-    });});
+    });
+});
 
 test('.punycode()', async t => {
     const result = await execa.shell('node ../cli.js punycode 日本語.jp');
