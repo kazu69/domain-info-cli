@@ -87,6 +87,7 @@ switch(command) {
             timeout = flags.o || flags.timeout,
             options = {};
 
+        if(!type) { type = 'A'; }
         if(address) options.server = { address: address };
         if(port) options.server = { port: port };
         if(timeout) options.timeout = timeout;
