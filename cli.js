@@ -7,6 +7,9 @@ const domain     = require('domain-info'),
       chalk      = require('chalk'),
       columnify  = require('columnify');
 
+const ipv4 = '?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}',
+      ipv6 = '?:(?:(?:[0-9a-fA-F:]){1,4}(?:(?::(?:[0-9a-fA-F]){1,4}|:)){2,7})+';
+
 const cli = meow(`
     Usage
       $ domain <command> <domain or ip address> <option>
@@ -20,7 +23,7 @@ const cli = meow(`
     Options
       groper
         -t --type     resourse type
-        -s --server   ip address
+        -s --server   ip address or host name
         -p --port     server port
         -o --timeout  wait for the request
 
@@ -29,7 +32,7 @@ const cli = meow(`
         -p --port   server port
 
     Examples
-      $ domain groper example.com --type A
+      $ domain groper example.com --type A --server a.iana-servers.net
       $ domain dig example.com --type A
       $ domain reverse ip address
       $ domain whois example.com --server whois.verisign-grs.com
@@ -78,6 +81,18 @@ function sterr(error) {
     process.exit(1);
 }
 
+function resolveDnsServer(hostname) {
+    return new Promise((resolve, reject) => {
+      domain.groper(hostname, 'A')
+      .then(data => {
+          resolve(data['A'][0]);
+      })
+      .catch(error => {
+          reject(error);
+      });
+    });
+}
+
 switch(command) {
     case 'groper':
     case 'dig':
@@ -85,16 +100,33 @@ switch(command) {
             address = flags.s || flags.server,
             port = flags.p || flags.port,
             timeout = flags.o || flags.timeout,
-            options = {};
+            options = {},
+            regex = new RegExp('(' + ipv4 + ')|(' + ipv6 + ')', 'g');
 
         if(!type) { type = 'A'; }
         if(address) options.server = { address: address };
         if(port) options.server = { port: port };
         if(timeout) options.timeout = timeout;
 
-        domain.groper(domain_or_ip, type, options)
-            .then(data => { stout(data); })
-            .catch(error => { sterr(error); })
+        if(address && !address.match(regex)) {
+            resolveDnsServer(address)
+            .then((data) => {
+                options.server = { address: data.address };
+
+                domain.groper(domain_or_ip, type, options)
+                .then(data => { stout(data); })
+                .catch(error => { sterr(error); })
+            })
+            .catch(error => {
+                sterr(error);
+            });
+
+            return;
+        }
+
+          domain.groper(domain_or_ip, type, options)
+          .then(data => { stout(data); })
+          .catch(error => { sterr(error); });
         break;
 
     case 'reverse':
