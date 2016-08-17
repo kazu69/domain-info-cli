@@ -6,7 +6,12 @@ import readline from 'readline';
 test('.groper()', async t => {
     const readStream = fs.createReadStream(__dirname + '/groper.txt', 'utf8');
     const readLine = readline.createInterface(readStream, {});
-    const result = await execa.shell('node ../cli.js groper example.com');
+    let result = await execa.shell('node ../cli.js groper example.com');
+    readLine.on('line', (line) => {
+        t.true(result.stdout.includes(line));
+    });
+
+    result = await execa.shell('node ../cli.js groper example.com -s a.iana-servers.net');
     readLine.on('line', (line) => {
         t.true(result.stdout.includes(line));
     });
