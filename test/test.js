@@ -27,8 +27,8 @@ test('.dig()', async t => {
 });
 
 test('.reverse()', async t => {
-    const result = await execa.shell('node ../cli.js reverse 192.30.252.128');
-    t.is(result.stdout, 'github.com');
+    const result = await execa.shell('node ../cli.js reverse 8.8.8.8');
+    t.is(result.stdout, 'google-public-dns-a.google.com');
 });
 
 test('.whois()', async t => {
