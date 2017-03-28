@@ -1,4 +1,5 @@
-.git
+.git/
+.github/
 node_modules/
 test/
 .eslintrc
